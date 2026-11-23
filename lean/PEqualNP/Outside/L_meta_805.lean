@@ -1,7 +1,7 @@
 import Mathlib
 import PEqualNP.Defs
 
-namespace L805
+namespace PEqualNP.Outside.L_meta_805_aux
 
 open PEqualNP.CircuitLowerBounds
 
@@ -65,7 +65,7 @@ theorem edge_iff (x : Fin 7 → Bool) :
     · exact ⟨3, 5, by simp, h.1, h.2⟩
     · exact ⟨4, 6, by simp, h.1, h.2⟩
 
-end L805
+end PEqualNP.Outside.L_meta_805_aux
 
 theorem PEqualNP.Outside.L_meta_805 : ∀ C : PEqualNP.CircuitLowerBounds.Circuit, C = ({ gates := [⟨PEqualNP.CircuitLowerBounds.GateOp.or, [6, 0]⟩, ⟨PEqualNP.CircuitLowerBounds.GateOp.or, [5, 2]⟩, ⟨PEqualNP.CircuitLowerBounds.GateOp.and, [7, 4]⟩, ⟨PEqualNP.CircuitLowerBounds.GateOp.or, [3, 9]⟩, ⟨PEqualNP.CircuitLowerBounds.GateOp.or, [0, 2]⟩, ⟨PEqualNP.CircuitLowerBounds.GateOp.and, [1, 11]⟩, ⟨PEqualNP.CircuitLowerBounds.GateOp.or, [4, 8]⟩, ⟨PEqualNP.CircuitLowerBounds.GateOp.and, [10, 13]⟩, ⟨PEqualNP.CircuitLowerBounds.GateOp.or, [12, 14]⟩], output := 15 } : PEqualNP.CircuitLowerBounds.Circuit) → PEqualNP.MetaComplexity.FanInTwo C ∧ C.size = 9 ∧ (∀ x : Fin 7 → Bool, (C.eval (List.ofFn x) = true ↔ ∃ u v : Fin 7, (u.val, v.val) ∈ ([(0, 1), (0, 4), (1, 2), (2, 3), (3, 4), (3, 5), (4, 6)] : List (ℕ × ℕ)) ∧ x u = true ∧ x v = true)) := by
   intro C hC
@@ -75,5 +75,5 @@ theorem PEqualNP.Outside.L_meta_805 : ∀ C : PEqualNP.CircuitLowerBounds.Circui
     simp only [List.mem_cons, List.not_mem_nil, or_false] at hg
     rcases hg with rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl | rfl <;> simp
   · intro x
-    rw [L805.edge_iff x, L805.ofFn_seven x]
-    exact (L805.eval_eq (x 0) (x 1) (x 2) (x 3) (x 4) (x 5) (x 6)) ▸ Iff.rfl
+    rw [PEqualNP.Outside.L_meta_805_aux.edge_iff x, PEqualNP.Outside.L_meta_805_aux.ofFn_seven x]
+    exact (PEqualNP.Outside.L_meta_805_aux.eval_eq (x 0) (x 1) (x 2) (x 3) (x 4) (x 5) (x 6)) ▸ Iff.rfl
